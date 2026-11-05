@@ -2,9 +2,7 @@
 title: "Junze Cao"
 ---
 
-::: {.intro}
-::: {.intro-copy}
-# Hi, I'm Junze.
+## Hi, I'm Junze.
 
 I'm a master's student in **Biostatistics, Public Health Data Science** at
 Columbia University's Mailman School of Public Health. My background is in
@@ -14,24 +12,13 @@ and language models.
 I'm interested in using statistical thinking and reproducible code to turn
 complex data into useful answers.
 
-[View my resume](resume.html){.btn .btn-primary}
-:::
+[View my resume](resume.html)
 
-::: {.intro-aside}
-### Mathematics, data & health
+## Education
 
-**Now**  
-MS in Biostatistics, Columbia University  
-Expected May 2028
-
-**Before**  
-BS in Mathematics and Applied Mathematics  
-Beijing Forestry University, 2026
-
-**Working with**  
-R, Python, SQL, and reproducible analysis
-:::
-:::
+I am pursuing an MS in Biostatistics at Columbia University, with graduation
+expected in May 2028. I received my BS in Mathematics and Applied Mathematics
+from Beijing Forestry University in June 2026.
 
 ## Technical background
 

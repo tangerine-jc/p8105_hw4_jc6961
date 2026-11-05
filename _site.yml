@@ -17,10 +17,4 @@ navbar:
       href: https://www.linkedin.com/in/junze-cao-53a1893b7/
 output:
   html_document:
-    theme: flatly
-    css: assets/styles.css
-    toc: false
-    self_contained: false
-    lib_dir: site_libs
-    includes:
-      after_body: assets/footer.html
+    theme: cerulean

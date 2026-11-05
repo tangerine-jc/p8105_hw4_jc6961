@@ -2,13 +2,11 @@
 title: "Resume"
 ---
 
-::: {.resume-intro}
 Education and selected technical experience
 
 [jc6961@cumc.columbia.edu](mailto:jc6961@cumc.columbia.edu) |
 [GitHub](https://github.com/tangerine-jc) |
 [LinkedIn](https://www.linkedin.com/in/junze-cao-53a1893b7/)
-:::
 
 ## Education
 
