@@ -4,36 +4,22 @@ title: "Junze Cao"
 
 ## Hi, I'm Junze.
 
-I'm a master's student in **Biostatistics, Public Health Data Science** at
-Columbia University's Mailman School of Public Health. My background is in
-mathematics, and my technical experience spans data analysis, AI applications,
-and language models.
+I'm a master's student in Biostatistics, Public Health Data Science at Columbia University's Mailman School of Public Health. My background is in mathematics, and my technical experience spans data analysis, AI applications, and language models.
 
-I'm interested in using statistical thinking and reproducible code to turn
-complex data into useful answers.
+I'm interested in using statistical thinking and reproducible code to turn complex data into useful answers.
 
 [View my resume](resume.html)
 
 ## Education
 
-I am pursuing an MS in Biostatistics at Columbia University, with graduation
-expected in May 2028. I received my BS in Mathematics and Applied Mathematics
-from Beijing Forestry University in June 2026.
+I am pursuing an MS in Biostatistics at Columbia University, with graduation expected in May 2028. I received my BS in Mathematics and Applied Mathematics from Beijing Forestry University in June 2026.
 
 ## Technical background
 
-My experience includes developing AI applications at Baidu, working on multimodal
-agents at Baiyang Future, and building a retrieval-augmented question answering
-system. These projects have involved programming, testing, and evaluating how
-models perform on practical tasks.
+My experience includes developing AI applications at Baidu, working on multimodal agents at Baiyang Future, and building a retrieval-augmented question answering system. These projects have involved programming, testing, and evaluating how models perform on practical tasks.
 
-At Columbia, I'm building on that technical background through coursework in
-probability, biostatistical methods, data science, and epidemiology. You can read
-more about my education and selected technical experience on my
-[resume](resume.html).
+At Columbia, I'm building on that technical background through coursework in probability, biostatistical methods, data science, and epidemiology. You can read more about my education and selected technical experience on my [resume](resume.html).
 
 ## Let's connect
 
-Find my code on [GitHub](https://github.com/tangerine-jc), connect on
-[LinkedIn](https://www.linkedin.com/in/junze-cao-53a1893b7/), or email me at
-[jc6961@cumc.columbia.edu](mailto:jc6961@cumc.columbia.edu).
+Find my code on [GitHub](https://github.com/tangerine-jc), connect on [LinkedIn](https://www.linkedin.com/in/junze-cao-53a1893b7/), or email me at [jc6961@cumc.columbia.edu](mailto:jc6961@cumc.columbia.edu).

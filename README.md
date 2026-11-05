@@ -17,16 +17,16 @@ publication.
 
 ## Problem 2: standalone interactive dashboard
 
-[`problem2/dashboard.Rmd`](problem2/dashboard.Rmd) produces a flexdashboard with
+[`problem2/p8105_hw4_jc6961.Rmd`](problem2/p8105_hw4_jc6961.Rmd) produces a flexdashboard with
 three distinct interactive plot types: scatter, line, and bar. It loads
 `ny_noaa` from `p8105.datasets` and filters to 2010. The scatterplot is further
 filtered to January and July; there is no random sampling. Monthly temperature
 means use complete, consistent minimum/maximum temperature pairs. Precipitation
 means use all observed precipitation values, including measured zeros.
 
-- Rendered dashboard: [`problem2/dashboard.html`](problem2/dashboard.html).
+- Rendered dashboard: [`problem2/p8105_hw4_jc6961.html`](problem2/p8105_hw4_jc6961.html).
 - Intended dashboard URL:
-  <https://tangerine-jc.github.io/p8105_hw4_jc6961/problem2/dashboard.html>.
+  <https://tangerine-jc.github.io/p8105_hw4_jc6961/problem2/p8105_hw4_jc6961.html>.
 - Layout: the lecture's two-column flexdashboard template, with widths 650/350.
 - The Data and methods page explains preparation, missingness, and limitations.
 
@@ -66,7 +66,7 @@ rmarkdown::render_site()
 
 # Problem 2
 rmarkdown::render(
-  "problem2/dashboard.Rmd",
+  "problem2/p8105_hw4_jc6961.Rmd",
   output_format = "flexdashboard::flex_dashboard")
 ```
 
