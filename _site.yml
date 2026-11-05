@@ -1,0 +1,28 @@
+name: "junze-cao"
+output_dir: "."
+exclude: ["README.md", "build.R", "p8105_hw4_jc6961.Rproj"]
+navbar:
+  title: "Junze Cao"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Resume"
+      href: resume.html
+    - text: "Weather dashboard"
+      href: dashboard.html
+  right:
+    - text: "GitHub"
+      href: https://github.com/tangerine-jc
+    - text: "Email"
+      href: mailto:jc6961@cumc.columbia.edu
+    - text: "LinkedIn"
+      href: https://www.linkedin.com/in/junze-cao-53a1893b7/
+output:
+  html_document:
+    theme: flatly
+    css: assets/styles.css
+    toc: false
+    self_contained: false
+    lib_dir: site_libs
+    includes:
+      after_body: assets/footer.html
