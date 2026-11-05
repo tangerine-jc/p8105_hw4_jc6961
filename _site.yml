@@ -1,6 +1,6 @@
 name: "junze-cao"
 output_dir: "."
-exclude: ["README.md", "build.R", "p8105_hw4_jc6961.Rproj", "problem2"]
+exclude: ["p8105_hw4_jc6961.Rproj", "problem2"]
 navbar:
   title: "Junze Cao"
   left:
