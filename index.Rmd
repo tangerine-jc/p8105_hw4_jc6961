@@ -15,7 +15,6 @@ I'm interested in using statistical thinking and reproducible code to turn
 complex data into useful answers.
 
 [View my resume](resume.html){.btn .btn-primary}
-[Explore the weather dashboard](dashboard.html){.btn .btn-default}
 :::
 
 ::: {.intro-aside}
@@ -34,16 +33,17 @@ R, Python, SQL, and reproducible analysis
 :::
 :::
 
-## Explore New York weather
+## Technical background
 
-How do temperatures and precipitation change over a year? My
-[interactive dashboard](dashboard.html) explores New York weather station records
-from 2010 using the NY NOAA dataset in `p8105.datasets`.
+My experience includes developing AI applications at Baidu, working on multimodal
+agents at Baiyang Future, and building a retrieval-augmented question answering
+system. These projects have involved programming, testing, and evaluating how
+models perform on practical tasks.
 
-Use the line chart to follow monthly temperatures, the bar chart to compare
-precipitation, and the scatterplot to explore daily minimum and maximum
-temperatures. Hover over a point for details, click a legend to isolate a series,
-or drag to zoom.
+At Columbia, I'm building on that technical background through coursework in
+probability, biostatistical methods, data science, and epidemiology. You can read
+more about my education and selected technical experience on my
+[resume](resume.html).
 
 ## Let's connect
 

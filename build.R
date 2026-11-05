@@ -7,8 +7,8 @@ if (!rmarkdown::pandoc_available()) {
 rmarkdown::render("index.Rmd", quiet = TRUE)
 rmarkdown::render("resume.Rmd", quiet = TRUE)
 
-# Explicitly select flexdashboard so the site format cannot override it.
+# Problem 2 is rendered separately from the personal website (Problem 1).
 rmarkdown::render(
-  "dashboard.Rmd",
+  "problem2/dashboard.Rmd",
   output_format = "flexdashboard::flex_dashboard",
   quiet = TRUE)

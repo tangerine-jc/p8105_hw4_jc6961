@@ -1,6 +1,6 @@
 name: "junze-cao"
 output_dir: "."
-exclude: ["README.md", "build.R", "p8105_hw4_jc6961.Rproj"]
+exclude: ["README.md", "build.R", "p8105_hw4_jc6961.Rproj", "problem2"]
 navbar:
   title: "Junze Cao"
   left:
@@ -8,8 +8,6 @@ navbar:
       href: index.html
     - text: "Resume"
       href: resume.html
-    - text: "Weather dashboard"
-      href: dashboard.html
   right:
     - text: "GitHub"
       href: https://github.com/tangerine-jc

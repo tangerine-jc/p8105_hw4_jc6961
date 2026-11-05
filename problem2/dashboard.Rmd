@@ -6,25 +6,13 @@ output:
     orientation: rows
     vertical_layout: scroll
     theme: flatly
-    css: assets/dashboard.css
+    css: dashboard.css
     self_contained: false
     lib_dir: site_libs
     source_code: embed
     navbar:
-      - title: "Home"
-        href: index.html
-        align: right
-      - title: "Resume"
-        href: resume.html
-        align: right
-      - title: "GitHub"
-        href: https://github.com/tangerine-jc
-        align: right
-      - title: "Email"
-        href: mailto:jc6961@cumc.columbia.edu
-        align: right
-      - title: "LinkedIn"
-        href: https://www.linkedin.com/in/junze-cao-53a1893b7/
+      - title: "Assignment repository"
+        href: https://github.com/tangerine-jc/p8105_hw4_jc6961
         align: right
 ---
 
@@ -249,8 +237,9 @@ between months may reflect both weather and reporting coverage.
 The dashboard loads the package dataset directly. No downloads or package
 installations occur during knitting, and all charts run in the browser without a
 Shiny server. **Source Code** in the navigation contains the dashboard's R Markdown
-source. To rebuild the whole website, open the R Project and run
-`source("build.R")`.
+source. This dashboard is the separate solution to Homework 4, Problem 2.
+To rebuild both homework components, open the R Project and run
+`source("build.R")` from the project root.
 
 - [Course NY NOAA data documentation](https://p8105.com/dataset_noaa.html)
 - [NOAA GHCN-Daily dataset](https://doi.org/10.7289/V5D21VHZ)
