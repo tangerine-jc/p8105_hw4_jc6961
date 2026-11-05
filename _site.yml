@@ -8,6 +8,8 @@ navbar:
       href: index.html
     - text: "Resume"
       href: resume.html
+    - text: "Dashboard"
+      href: problem2/p8105_hw4_jc6961.html
   right:
     - text: "GitHub"
       href: https://github.com/tangerine-jc
