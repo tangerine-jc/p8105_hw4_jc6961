@@ -1,0 +1,71 @@
+---
+title: "Resume"
+---
+
+::: {.resume-intro}
+Education and selected technical experience
+
+[jc6961@cumc.columbia.edu](mailto:jc6961@cumc.columbia.edu) |
+[GitHub](https://github.com/tangerine-jc) |
+[LinkedIn](https://www.linkedin.com/in/junze-cao-53a1893b7/)
+:::
+
+## Education
+
+### Columbia University, Mailman School of Public Health
+
+**MS in Biostatistics, Public Health Data Science**  
+New York, NY | Expected May 2028
+
+Relevant coursework: Probability, Data Science, Biostatistical Methods, and
+Principles of Epidemiology.
+
+### Beijing Forestry University
+
+**BS in Mathematics and Applied Mathematics**  
+Beijing, China | September 2022–June 2026
+
+## Technical experience
+
+### Baidu
+
+**AI Application Development Intern**  
+Beijing, China | March–July 2025
+
+- Developed applications integrating language models and search technologies,
+  and contributed to a no-code platform for building AI applications with
+  multiple agents.
+- Built automated testing and data-export tools that enabled product managers
+  to complete testing workflows independently.
+
+### Baiyang Future
+
+**Algorithm Intern**  
+Beijing, China | July–September 2024
+
+- Reproduced and optimized the MP5 multimodal agent in MineDojo using
+  Vicuna-13B and MineCLIP, with LoRA fine-tuning and CLP-guided visual attention.
+- Introduced a confidence-threshold termination mechanism to improve agent
+  execution efficiency.
+
+## Selected technical project
+
+### Sales AI: retrieval-augmented question answering
+
+**Technical Leader**  
+Beijing, China | August–September 2024
+
+- Deployed Qwen2-7B locally and built a retrieval-augmented generation pipeline
+  with LangChain, including document parsing, text chunking, embeddings, vector
+  indexing, and semantic retrieval.
+- Incorporated retrieved passages into model prompts to answer questions about
+  uploaded sales documents.
+- Evaluated retrieval relevance, factual correctness, hallucinations, and latency
+  through manual testing.
+
+## Technical skills
+
+**Programming and analytics:** Python, R, SQL, and A/B testing.  
+**AI:** Large language models, prompt engineering, retrieval-augmented generation,
+and AI agents.  
+**Languages:** English and Chinese.
