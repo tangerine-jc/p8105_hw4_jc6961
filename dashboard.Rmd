@@ -1,0 +1,267 @@
+---
+title: "New York weather | 2010"
+author: "Junze Cao"
+output:
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: scroll
+    theme: flatly
+    css: assets/dashboard.css
+    self_contained: false
+    lib_dir: site_libs
+    source_code: embed
+    navbar:
+      - title: "Home"
+        href: index.html
+        align: right
+      - title: "Resume"
+        href: resume.html
+        align: right
+      - title: "GitHub"
+        href: https://github.com/tangerine-jc
+        align: right
+      - title: "Email"
+        href: mailto:jc6961@cumc.columbia.edu
+        align: right
+      - title: "LinkedIn"
+        href: https://www.linkedin.com/in/junze-cao-53a1893b7/
+        align: right
+---
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(plotly)
+
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+
+data("ny_noaa", package = "p8105.datasets")
+
+weather_df =
+  ny_noaa |>
+  filter(date >= as.Date("2010-01-01"), date <= as.Date("2010-12-31")) |>
+  transmute(
+    id,
+    date,
+    month = as.integer(format(date, "%m")),
+    tmax = as.numeric(tmax) / 10,
+    tmin = as.numeric(tmin) / 10,
+    prcp = prcp / 10,
+    invalid_pair = !is.na(tmin) & !is.na(tmax) & tmin > tmax,
+    season = factor(
+      case_when(
+        month %in% c(12, 1, 2) ~ "Winter",
+        month %in% 3:5 ~ "Spring",
+        month %in% 6:8 ~ "Summer",
+        TRUE ~ "Fall"),
+      levels = c("Winter", "Spring", "Summer", "Fall"))) |>
+  mutate(
+    tmax = if_else(invalid_pair, NA_real_, tmax),
+    tmin = if_else(invalid_pair, NA_real_, tmin))
+
+monthly_df =
+  weather_df |>
+  group_by(month) |>
+  summarize(
+    n_tmax = sum(!is.na(tmax)),
+    n_tmin = sum(!is.na(tmin)),
+    n_prcp = sum(!is.na(prcp)),
+    mean_tmax = mean(tmax, na.rm = TRUE),
+    mean_tmin = mean(tmin, na.rm = TRUE),
+    mean_prcp = mean(prcp, na.rm = TRUE),
+    wet_percent = 100 * mean(prcp > 0, na.rm = TRUE),
+    .groups = "drop")
+
+set.seed(6961)
+scatter_df =
+  weather_df |>
+  filter(!is.na(tmin), !is.na(tmax)) |>
+  slice_sample(n = 4000)
+
+coverage_df =
+  weather_df |>
+  summarize(
+    `Maximum temperature` = sum(!is.na(tmax)),
+    `Minimum temperature` = sum(!is.na(tmin)),
+    Precipitation = sum(!is.na(prcp)))
+
+# Shared styling keeps axes and hover text legible in each panel.
+plot_font = list(family = "Trebuchet MS, sans-serif", size = 14, color = "#17324d")
+```
+
+Weather
+=======================================================================
+
+Row {data-height=110}
+-----------------------------------------------------------------------
+
+### A year of station observations
+
+Explore **`r format(nrow(weather_df), big.mark = ",")` station-day records** from
+**`r n_distinct(weather_df$id)` New York stations**. Monthly summaries use all
+available measurements; the scatterplot uses a reproducible sample of 4,000
+complete temperature pairs. **Hover** for details, **click a legend** to hide a
+series, or **drag** to zoom. Double-click a plot to reset. Read **Data & methods**
+for coverage and interpretation.
+
+Row {data-height=350}
+-----------------------------------------------------------------------
+
+### Monthly mean daily temperatures
+
+```{r temperature-line}
+plot_ly(monthly_df, x = ~month) |>
+  add_trace(
+    y = ~mean_tmax, type = "scatter", mode = "lines+markers",
+    name = "Daily maximum", line = list(color = "#225c94", width = 3),
+    marker = list(color = "#225c94", size = 7),
+    text = ~paste0(month.name[month], "<br>Observed station-days: ",
+      format(n_tmax, big.mark = ",")),
+    hovertemplate = "%{text}<br>Mean maximum: %{y:.1f} °C<extra></extra>") |>
+  add_trace(
+    y = ~mean_tmin, type = "scatter", mode = "lines+markers",
+    name = "Daily minimum", line = list(color = "#086d75", width = 3, dash = "dash"),
+    marker = list(color = "#086d75", size = 7, symbol = "diamond"),
+    text = ~paste0(month.name[month], "<br>Observed station-days: ",
+      format(n_tmin, big.mark = ",")),
+    hovertemplate = "%{text}<br>Mean minimum: %{y:.1f} °C<extra></extra>") |>
+  layout(
+    font = plot_font,
+    margin = list(l = 65, r = 25, b = 75, t = 15),
+    xaxis = list(title = "Month (2010)", tickvals = 1:12, ticktext = month.abb,
+      showgrid = FALSE, zeroline = FALSE),
+    yaxis = list(title = "Temperature (°C)", gridcolor = "#e3ebf2"),
+    legend = list(orientation = "h", x = 0, y = 1.16)) |>
+  config(displaylogo = FALSE, responsive = TRUE)
+```
+
+Row {data-height=420}
+-----------------------------------------------------------------------
+
+### Mean daily precipitation by month
+
+```{r precipitation-bars}
+plot_ly(
+  monthly_df, x = ~month, y = ~mean_prcp, type = "bar", textposition = "none",
+  marker = list(color = "#225c94"),
+  text = ~paste0(month.name[month], "<br>Observed station-days: ",
+    format(n_prcp, big.mark = ","), "<br>Wet days (>0 mm): ",
+    round(wet_percent, 1), "%"),
+  hovertemplate = "%{text}<br>Mean precipitation: %{y:.2f} mm/day<extra></extra>") |>
+  layout(
+    font = plot_font,
+    margin = list(l = 70, r = 20, b = 75, t = 20),
+    xaxis = list(title = "Month (2010)", tickvals = 1:12, ticktext = month.abb,
+      showgrid = FALSE, zeroline = FALSE),
+    yaxis = list(title = "Precipitation (mm/day)", rangemode = "tozero",
+      gridcolor = "#e3ebf2"),
+    showlegend = FALSE) |>
+  config(displaylogo = FALSE, responsive = TRUE)
+```
+
+### Daily minimum and maximum temperatures
+
+```{r temperature-scatter}
+plot_ly(
+  scatter_df, x = ~tmin, y = ~tmax, color = ~season,
+  colors = c("#225c94", "#086d75", "#a15316", "#76519a"),
+  type = "scatter", mode = "markers",
+  marker = list(size = 5, opacity = 0.45),
+  text = ~paste0("Station: ", id, "<br>Date: ", date, "<br>Season: ", season),
+  hovertemplate = paste0("%{text}<br>Minimum: %{x:.1f} °C",
+    "<br>Maximum: %{y:.1f} °C<extra></extra>")) |>
+  layout(
+    font = plot_font,
+    margin = list(l = 65, r = 15, b = 75, t = 30),
+    xaxis = list(title = "Daily minimum (°C)", gridcolor = "#e3ebf2"),
+    yaxis = list(title = "Daily maximum (°C)", gridcolor = "#e3ebf2"),
+    legend = list(orientation = "h", x = 0, y = 1.15, font = list(size = 12))) |>
+  config(displaylogo = FALSE, responsive = TRUE)
+```
+
+Data & methods
+=======================================================================
+
+Column
+-----------------------------------------------------------------------
+
+### Data source and preparation
+
+The dataset is `ny_noaa` from the **p8105.datasets** package, originally drawn
+from NOAA's Global Historical Climatology Network Daily data. The complete
+course dataset covers 1981–2010. This dashboard filters it to **January 1–December
+31, 2010** before summarizing or sampling. Each row represents one station on
+one date.
+
+Temperatures are stored as character values in tenths of a degree Celsius; I
+convert them to numeric values and divide by 10. Precipitation is in tenths of a
+millimeter and is also divided by 10. The resulting units are **°C** and **mm**.
+
+In `r sum(weather_df$invalid_pair)` records, the reported minimum exceeds the
+maximum. I set both temperatures in those records to missing while retaining
+their precipitation values. Missing measurements are excluded separately for
+each variable; they are never replaced by zero.
+
+#### Coverage after cleaning
+
+```{r coverage-table}
+data.frame(
+  Measurement = names(coverage_df),
+  `Observed station-days` = format(as.integer(coverage_df[1, ]), big.mark = ","),
+  `Missing (%)` = round(100 * (1 - as.numeric(coverage_df[1, ]) / nrow(weather_df)), 1),
+  check.names = FALSE) |>
+  knitr::kable(row.names = FALSE)
+```
+
+These counts use the **`r format(nrow(weather_df), big.mark = ",")` records in
+2010** as their denominator. Some stations measure precipitation but do not
+measure temperature, so coverage differs substantially across variables.
+
+#### How to read the charts
+
+**Line chart.** Each point is a monthly mean of all nonmissing station-day
+measurements for that variable. Maximum and minimum temperatures can have
+different denominators. Hover text gives the number of contributing records.
+
+**Bar chart.** Each bar is mean precipitation per observed station-day in a month,
+including observed zeros. This is not a monthly rainfall total. Hover text also
+shows the proportion of observed days with precipitation greater than zero.
+
+**Scatterplot.** Each point is one of 4,000 randomly selected station-days with
+both temperatures observed and minimum no greater than maximum. Sampling is
+without replacement, using `set.seed(6961)`. Seasons are winter (December–February),
+spring (March–May), summer (June–August), and fall (September–November).
+
+#### Interpretation and limitations
+
+The monthly temperature lines show a strong seasonal pattern, while the sampled
+temperature pairs show warmer minima and maxima during summer. The highest
+mean daily precipitation in this dataset occurs in
+**`r month.name[monthly_df$month[which.max(monthly_df$mean_prcp)]]`**.
+
+These are descriptive summaries of available station records. Stations with more
+observed days receive more weight; the set of reporting stations can change by
+month and variable. The charts are not area-weighted estimates for New York
+State, and one year cannot establish a long-term climate trend. Differences
+between months may reflect both weather and reporting coverage.
+
+#### Reproducibility and references
+
+The dashboard loads the package dataset directly. No downloads or package
+installations occur during knitting, and all charts run in the browser without a
+Shiny server. **Source Code** in the navigation contains the dashboard's R Markdown
+source. To rebuild the whole website, open the R Project and run
+`source("build.R")`.
+
+- [Course NY NOAA data documentation](https://p8105.com/dataset_noaa.html)
+- [NOAA GHCN-Daily dataset](https://doi.org/10.7289/V5D21VHZ)
+- [Website repository](https://github.com/tangerine-jc/p8105_hw4_jc6961)
+
+<details>
+<summary>R and package versions</summary>
+
+```{r session-information}
+cat("p8105.datasets:", as.character(packageVersion("p8105.datasets")), "\n")
+sessionInfo()
+```
+
+</details>
